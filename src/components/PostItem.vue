@@ -4,7 +4,7 @@
       <div><b>Название:</b> {{ post.title }}</div>
       <div><b>Описание:</b> {{ post.body }}</div>
     </div>
-    <Button
+    <MyButton
         textBtn="Удалить"
         @click="deletePost"
     />

@@ -1,10 +1,16 @@
 <template>
   <form @submit.prevent>
-    <label>Название</label>
-    <input type="text" v-model="post.title">
-    <label>Описание</label>
-    <input type="text" v-model="post.body">
-    <Button
+    <MyInput
+      textLabel="Название"
+      v-model="post.title"
+    />
+
+    <MyInput
+        textLabel="Описание"
+        v-model="post.body"
+    />
+
+    <MyButton
         textBtn="Создать"
         @click="createPost"
     />
@@ -20,7 +26,6 @@ export default {
       post: {
         title: '',
         body: '',
-
       }
     }
   },
@@ -42,7 +47,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 form{
   display: flex;
   flex-direction: column;
@@ -55,12 +59,4 @@ label{
   margin-bottom: 5px;
   width: 100%;
 }
-
-input{
-  border: 1px solid gray;
-  margin-bottom: 15px;
-  padding: 10px 15px;
-  width: 100%;
-}
-
 </style>

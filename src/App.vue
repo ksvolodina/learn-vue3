@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <PostForm @create="createPost"/>
+
     <PostList
         :posts="posts"
         :header="header"

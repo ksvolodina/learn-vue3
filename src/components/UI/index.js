@@ -1,5 +1,7 @@
-import Button from "@/components/UI/Button";
+import MyButton from "@/components/UI/MyButton";
+import MyInput from "@/components/UI/MyInput";
 
 export default [
-    Button,
+    MyButton,
+    MyInput,
 ]
