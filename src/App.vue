@@ -5,7 +5,7 @@
     <PostList
         :posts="posts"
         :header="header"
-        @deletePost="deletePost"
+        @onDelete="deletePost"
     />
   </div>
 </template>
@@ -48,7 +48,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -63,5 +62,4 @@ h3{
 .app{
   padding: 15px;
 }
-
 </style>

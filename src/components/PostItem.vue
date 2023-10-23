@@ -6,7 +6,7 @@
     </div>
     <MyButton
         textBtn="Удалить"
-        @click="deletePost"
+        @click="$emit('onDelete', post.id)"
     />
   </div>
 </template>
@@ -21,13 +21,6 @@ export default {
       required: true,
     }
   },
-
-  methods: {
-    deletePost() {
-      this.$emit('deletePost', this.post.id)
-    }
-  },
-
 }
 </script>
 

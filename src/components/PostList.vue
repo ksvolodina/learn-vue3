@@ -4,7 +4,7 @@
     <PostItem
         v-for="post in posts"
         :post="post"
-        @deletePost="deletePost"
+        @onDelete="$emit('onDelete', $event)"
     />
   </div>
 </template>
@@ -25,12 +25,6 @@ export default {
     posts: {
       type: Array,
       required: true,
-    }
-  },
-
-  methods: {
-    deletePost(postId) {
-      this.$emit('deletePost', postId)
     }
   },
 }
