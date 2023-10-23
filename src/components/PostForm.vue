@@ -12,12 +12,8 @@
 </template>
 
 <script>
-import Button from "@/components/UI/Button";
-
 export default {
   name: "PostForm",
-
-  components: {Button},
 
   data() {
     return {

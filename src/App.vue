@@ -12,13 +12,13 @@
 <script>
 import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
-import Post from "@/components/PostItem";
+import PostItem from "@/components/PostItem";
 
 export default {
   name: "App",
 
   components: {
-    Post,
+    PostItem,
     PostForm,
     PostList
   },
