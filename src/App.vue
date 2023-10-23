@@ -1,30 +1,66 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="app">
+    <PostForm @create="createPost"/>
+    <PostList
+        :posts="posts"
+        :header="header"
+        @deletePost="deletePost"
+    />
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import PostForm from "@/components/PostForm";
+import PostList from "@/components/PostList";
+import Post from "@/components/PostItem";
 
-nav {
-  padding: 30px;
+export default {
+  name: "App",
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  components: {
+    Post,
+    PostForm,
+    PostList
+  },
 
-    &.router-link-exact-active {
-      color: #42b983;
+  data() {
+    return {
+      posts: [
+        {id: 1, title: 'title 1', body: 'body 1'},
+        {id: 2, title: 'title 2', body: 'body 2'},
+        {id: 3, title: 'title 3', body: 'body 3'},
+      ],
+      header: 'Посты'
     }
+  },
+
+  methods: {
+    createPost(post) {
+      this.posts.push(post)
+    },
+
+    deletePost(postId){
+      this.posts = this.posts.filter(post => post.id !== postId)
+    },
   }
 }
+</script>
+
+<style lang="scss">
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h3{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.app{
+  padding: 15px;
+}
+
 </style>
