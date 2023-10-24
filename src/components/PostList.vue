@@ -1,12 +1,15 @@
 <template>
   <div>
     <h3>{{ header }}</h3>
-    <PostItem
-        v-if="posts.length > 0"
-        v-for="post in posts"
-        :post="post"
-        @onDelete="$emit('onDelete', $event)"
-    />
+
+    <div v-if="posts.length > 0">
+      <PostItem
+          v-for="post in posts"
+          :post="post"
+          @onDelete="$emit('onDelete', $event)"
+      />
+    </div>
+
     <p v-else>Список постов пуст</p>
   </div>
 </template>
