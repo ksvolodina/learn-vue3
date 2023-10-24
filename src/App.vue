@@ -1,6 +1,14 @@
 <template>
   <div class="app">
-    <PostForm @create="createPost"/>
+
+    <MyButton
+        text-btn="Создать пост"
+        @click="modalVisibility=true"
+    />
+
+    <MyModal v-model:show="modalVisibility">
+      <PostForm @create="createPost"/>
+    </MyModal>
 
     <PostList
         :posts="posts"
@@ -31,13 +39,15 @@ export default {
         {id: 2, title: 'title 2', body: 'body 2'},
         {id: 3, title: 'title 3', body: 'body 3'},
       ],
-      header: 'Посты'
+      header: 'Посты',
+      modalVisibility: false,
     }
   },
 
   methods: {
     createPost(post) {
       this.posts.push(post)
+      this.modalVisibility = false
     },
 
     deletePost(postId){
