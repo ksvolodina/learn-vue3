@@ -1,20 +1,21 @@
 <template>
   <div class="app">
 
-    <MyButton
-        text-btn="Создать пост"
-        @click="modalVisibility=true"
-    />
+    <Button @click="modalVisibility=true">
+      Создать пост
+    </Button>
 
-    <MyModal v-model:show="modalVisibility">
+    <Modal v-model:show="modalVisibility">
       <PostForm @create="createPost"/>
-    </MyModal>
+    </Modal>
 
     <PostList
         :posts="posts"
-        :header="header"
         @onDelete="deletePost"
+        v-if="!isPostLoading"
     />
+
+    <div class="offset-top-15" v-else>Идет загрузка...</div>
   </div>
 </template>
 
@@ -22,6 +23,7 @@
 import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
 import PostItem from "@/components/PostItem";
+import axios from 'axios'
 
 export default {
   name: "App",
@@ -34,13 +36,9 @@ export default {
 
   data() {
     return {
-      posts: [
-        {id: 1, title: 'title 1', body: 'body 1'},
-        {id: 2, title: 'title 2', body: 'body 2'},
-        {id: 3, title: 'title 3', body: 'body 3'},
-      ],
-      header: 'Посты',
+      posts: [],
       modalVisibility: false,
+      isPostLoading: false,
     }
   },
 
@@ -53,6 +51,28 @@ export default {
     deletePost(postId){
       this.posts = this.posts.filter(post => post.id !== postId)
     },
+
+    async fetchPosts() {
+      try {
+        this.isPostLoading = true
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+        this.posts = response.data
+        // имитация долгого ответа сервера
+        // setTimeout( async () => {
+        //   const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
+        //   this.posts = response.data
+        //   this.isPostLoading = false
+        // }, 1000)
+      } catch (e) {
+        alert('Ошибка')
+      } finally {
+        this.isPostLoading = false
+      }
+    }
+  },
+
+  mounted() {
+    this.fetchPosts()
   }
 }
 </script>
@@ -71,5 +91,9 @@ h3{
 
 .app{
   padding: 15px;
+}
+
+.offset-top-15{
+  margin-top: 15px;
 }
 </style>

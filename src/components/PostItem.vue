@@ -4,10 +4,7 @@
       <div><b>Название:</b> {{ post.title }}</div>
       <div><b>Описание:</b> {{ post.body }}</div>
     </div>
-    <MyButton
-        textBtn="Удалить"
-        @click="$emit('onDelete', post.id)"
-    />
+    <Button @click="$emit('onDelete', post.id)">Удалить</Button>
   </div>
 </template>
 
@@ -30,6 +27,7 @@ export default {
   border: 2px solid gray;
   display: flex;
   align-items: center;
+  gap: 15px;
   justify-content: space-between;
   margin-top: 15px;
   padding: 15px;

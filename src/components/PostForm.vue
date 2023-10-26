@@ -1,19 +1,16 @@
 <template>
   <form @submit.prevent>
-    <MyInput
+    <Input
       textLabel="Название"
       v-model="post.title"
     />
 
-    <MyInput
+    <Input
         textLabel="Описание"
         v-model="post.body"
     />
 
-    <MyButton
-        textBtn="Создать"
-        @click="createPost"
-    />
+    <Button @click="createPost">Создать</Button>
   </form>
 </template>
 

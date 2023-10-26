@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "MyInput",
+  name: "Input",
 
   props: {
     textLabel: {
@@ -28,6 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 input{
+  -webkit-appearance: none;
   border: 1px solid gray;
   margin-bottom: 15px;
   padding: 10px 15px;

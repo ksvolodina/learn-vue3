@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ header }}</h3>
+    <h3>Посты</h3>
 
     <div v-if="posts.length > 0">
       <PostItem
@@ -23,10 +23,6 @@ export default {
   components: {PostItem},
 
   props: {
-    header: {
-      type: String,
-      default: ''
-    },
     posts: {
       type: Array,
       required: true,
