@@ -38,7 +38,7 @@ export default {
   background: #fff;
   border-radius: 12px;
   margin: auto;
-  padding: 20px;
+  padding: 30px;
 }
 
 </style>

@@ -1,13 +1,17 @@
 <template>
   <form @submit.prevent>
+    <h2>Создание поста</h2>
+
     <Input
-      textLabel="Название"
+      inputClass="offset-bottom-15"
+      placeholder="Название"
       v-model="post.title"
     />
 
     <Input
-        textLabel="Описание"
-        v-model="post.body"
+      inputClass="offset-bottom-15"
+      placeholder="Описание"
+      v-model="post.body"
     />
 
     <Button @click="createPost">Создать</Button>

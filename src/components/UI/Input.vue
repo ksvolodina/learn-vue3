@@ -1,9 +1,11 @@
 <template>
-  <label>{{ textLabel }}</label>
+  <label>{{ label }}</label>
   <input
+      :class="inputClass"
+      :placeholder="placeholder"
       :value="modelValue"
-      @input="updateInput"
-      type="text">
+      type="text"
+      @input="updateInput">
 </template>
 
 <script>
@@ -11,7 +13,15 @@ export default {
   name: "Input",
 
   props: {
-    textLabel: {
+    label: {
+      type: String,
+      default: '',
+    },
+    inputClass: {
+      type: String,
+      default: '',
+    },
+    placeholder: {
       type: String,
       default: '',
     },
@@ -30,7 +40,6 @@ export default {
 input{
   -webkit-appearance: none;
   border: 1px solid gray;
-  margin-bottom: 15px;
   padding: 10px 15px;
   width: 100%;
 }

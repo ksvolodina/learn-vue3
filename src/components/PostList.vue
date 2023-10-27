@@ -1,14 +1,15 @@
 <template>
   <div>
-    <h3>Посты</h3>
+    <h2>Посты</h2>
 
-    <div v-if="posts.length > 0">
+    <transition-group v-if="posts.length > 0" name="list">
       <PostItem
           v-for="post in posts"
           :post="post"
+          :key="post.id"
           @onDelete="$emit('onDelete', $event)"
       />
-    </div>
+    </transition-group>
 
     <p v-else>Список постов пуст</p>
   </div>
@@ -28,6 +29,23 @@ export default {
       required: true,
     }
   },
+
+  methods: {
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.list-enter-active, .list-leave-active {
+  transition: all 400ms ease;
+}
+.list-enter-from, .list-leave-to /* .list-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+  transform: translateX(130px);
 }
 
-</script>
+.list-move {
+  transition: transform 400ms;
+}
+</style>
