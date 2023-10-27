@@ -29,11 +29,13 @@
 
       <div class="offset-top-15" v-else>Идет загрузка...</div>
 
-      <Pagination
-          :total-pages="totalPages"
-          :page="page"
-          @changePage="changePage"
-      />
+      <div ref="observer"></div>
+
+<!--      <Pagination-->
+<!--          :total-pages="totalPages"-->
+<!--          :page="page"-->
+<!--          @changePage="changePage"-->
+<!--      />-->
 
     </div>
   </div>
@@ -81,9 +83,9 @@ export default {
       this.posts = this.posts.filter(post => post.id !== postId)
     },
 
-    changePage(pageNumber) {
-      this.page = pageNumber
-    },
+    // changePage(pageNumber) {
+    //   this.page = pageNumber
+    // },
 
     async fetchPosts() {
       try {
@@ -108,11 +110,42 @@ export default {
       } finally {
         this.isPostLoading = false
       }
+    },
+
+    async loadMorePosts() {
+      try {
+        this.page += 1
+        const response = await axios.get(
+            'https://jsonplaceholder.typicode.com/posts',
+            {params: {
+                _page: this.page,
+                _limit: this.limit,
+              }}
+        )
+        this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
+        this.posts = [...this.posts, ...response.data]
+      } catch (e) {
+        alert('Ошибка')
+      }
     }
   },
 
   mounted() {
     this.fetchPosts()
+
+    let options = {
+      rootMargin: "0px",
+      threshold: 1.0,
+    };
+
+    let callback = (entries, observer) => {
+      if (entries[0].isIntersecting && this.page < this.totalPages) {
+        this.loadMorePosts()
+      }
+    }
+
+    let observer = new IntersectionObserver(callback, options);
+    observer.observe(this.$refs.observer)
   },
 
   computed: {
@@ -127,9 +160,9 @@ export default {
   },
 
   watch: {
-    page() {
-      this.fetchPosts()
-    }
+    // page() {
+    //   this.fetchPosts()
+    // }
   }
 }
 </script>

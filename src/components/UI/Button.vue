@@ -18,13 +18,20 @@ export default {
   cursor: pointer;
   padding: 10px 15px;
 
-  &-small {
-    padding: 5px 10px;
+  &:hover {
+    transition: all 300ms ease;
+    background: #999;
+    border-color: #999;
+    color: #fff;
   }
 
   &-active {
     background: #333;
     color: #fff;
+  }
+
+  &-small {
+    padding: 5px 10px;
   }
 }
 </style>

@@ -32,5 +32,9 @@ export default {
   justify-content: space-between;
   margin-bottom: 15px;
   padding: 15px;
+  &:hover {
+    transition: all 300ms ease;
+    background-color: #eee;
+  }
 }
 </style>
