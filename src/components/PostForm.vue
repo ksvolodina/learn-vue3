@@ -3,13 +3,13 @@
     <h2>Создание поста</h2>
 
     <Input
-      inputClass="offset-bottom-15"
+      input-class="offset-bottom-15"
       placeholder="Название"
       v-model="post.title"
     />
 
     <Input
-      inputClass="offset-bottom-15"
+      input-class="offset-bottom-15"
       placeholder="Описание"
       v-model="post.body"
     />
@@ -53,6 +53,9 @@ form{
   flex-direction: column;
   .btn{
     align-self: flex-start;
+  }
+  * {
+    color: #333;
   }
 }
 

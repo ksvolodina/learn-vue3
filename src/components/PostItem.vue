@@ -1,6 +1,7 @@
 <template>
   <div class="post">
     <div>
+      <div>{{ post.id }}</div>
       <div><b>Название:</b> {{ post.title }}</div>
       <div><b>Описание:</b> {{ post.body }}</div>
     </div>
@@ -29,7 +30,7 @@ export default {
   align-items: center;
   gap: 15px;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-bottom: 15px;
   padding: 15px;
 }
 </style>

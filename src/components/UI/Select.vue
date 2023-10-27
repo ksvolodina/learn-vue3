@@ -37,7 +37,7 @@ export default {
 <style scoped>
 select{
   /*-webkit-appearance: none;*/
-  border: 1px solid gray;
+  border: 1px solid #333;
   padding: 10px 15px;
 }
 </style>

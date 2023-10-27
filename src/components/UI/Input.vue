@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 input{
   -webkit-appearance: none;
-  border: 1px solid gray;
+  border: 1px solid #333;
   padding: 10px 15px;
   width: 100%;
 }

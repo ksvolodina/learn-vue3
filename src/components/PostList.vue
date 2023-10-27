@@ -29,10 +29,6 @@ export default {
       required: true,
     }
   },
-
-  methods: {
-
-  }
 }
 </script>
 
@@ -40,6 +36,7 @@ export default {
 .list-enter-active, .list-leave-active {
   transition: all 400ms ease;
 }
+
 .list-enter-from, .list-leave-to /* .list-leave-active до версии 2.1.8 */ {
   opacity: 0;
   transform: translateX(130px);

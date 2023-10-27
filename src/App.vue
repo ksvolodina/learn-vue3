@@ -4,7 +4,7 @@
     <div class="row">
 
       <Input
-          inputClass="offset-bottom-15"
+          input-class="offset-bottom-15"
           placeholder="Поиск по названию"
           v-model="searchQuery"
       />
@@ -28,6 +28,12 @@
       />
 
       <div class="offset-top-15" v-else>Идет загрузка...</div>
+
+      <Pagination
+          :total-pages="totalPages"
+          :page="page"
+          @changePage="changePage"
+      />
 
     </div>
   </div>
@@ -54,11 +60,14 @@ export default {
       modalVisibility: false,
       isPostLoading: false,
       selectedSort: '',
+      searchQuery: '',
+      page: 1,
+      totalPages: 0,
+      limit: 10,
       sortOptions: [
         {value: 'title', name: 'По названию'},
         {value: 'body', name: 'По описанию'},
       ],
-      searchQuery: '',
     }
   },
 
@@ -72,10 +81,21 @@ export default {
       this.posts = this.posts.filter(post => post.id !== postId)
     },
 
+    changePage(pageNumber) {
+      this.page = pageNumber
+    },
+
     async fetchPosts() {
       try {
         this.isPostLoading = true
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
+        const response = await axios.get(
+            'https://jsonplaceholder.typicode.com/posts',
+            {params: {
+                _page: this.page,
+                _limit: this.limit,
+              }}
+        )
+        this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
         this.posts = response.data
         // имитация долгого ответа сервера
         // setTimeout( async () => {
@@ -105,6 +125,12 @@ export default {
       return this.sortedPosts.filter( post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
+
+  watch: {
+    page() {
+      this.fetchPosts()
+    }
+  }
 }
 </script>
 
