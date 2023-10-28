@@ -1,11 +1,11 @@
 <template>
-  <div class="post">
+  <div class="post" @click="$router.push(`/posts/${post.id}`)">
     <div>
       <div>{{ post.id }}</div>
       <div><b>Название:</b> {{ post.title }}</div>
       <div><b>Описание:</b> {{ post.body }}</div>
     </div>
-    <Button @click="$emit('onDelete', post.id)">Удалить</Button>
+    <Button @click.stop="$emit('onDelete', post.id)">Удалить</Button>
   </div>
 </template>
 
@@ -25,7 +25,8 @@ export default {
 
 <style lang="scss" scoped>
 .post {
-  border: 2px solid gray;
+  border: 1px solid gray;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 15px;

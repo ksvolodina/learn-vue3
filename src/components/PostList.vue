@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h2>Посты</h2>
-
     <transition-group v-if="posts.length > 0" name="list">
       <PostItem
           v-for="post in posts"
