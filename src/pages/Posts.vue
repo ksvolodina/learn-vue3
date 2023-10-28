@@ -4,6 +4,7 @@
     <h1>Посты</h1>
 
     <Input
+        v-focus
         input-class="offset-bottom-15"
         placeholder="Поиск по названию"
         v-model="searchQuery"
@@ -29,7 +30,7 @@
 
     <div class="offset-top-15" v-else>Идет загрузка...</div>
 
-    <div ref="observer"></div>
+    <div v-if="page < totalPages" v-intersection="loadMorePosts"></div>
 
     <!--      <Pagination-->
     <!--          :total-pages="totalPages"-->
@@ -131,20 +132,6 @@ export default {
 
   mounted() {
     this.fetchPosts()
-
-    let options = {
-      rootMargin: "0px",
-      threshold: 1.0,
-    };
-
-    let callback = (entries, observer) => {
-      if (entries[0].isIntersecting && this.page < this.totalPages) {
-        this.loadMorePosts()
-      }
-    }
-
-    let observer = new IntersectionObserver(callback, options);
-    observer.observe(this.$refs.observer)
   },
 
   computed: {

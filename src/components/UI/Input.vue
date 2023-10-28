@@ -1,5 +1,4 @@
 <template>
-  <label>{{ label }}</label>
   <input
       :class="inputClass"
       :placeholder="placeholder"
@@ -13,10 +12,6 @@ export default {
   name: "Input",
 
   props: {
-    label: {
-      type: String,
-      default: '',
-    },
     inputClass: {
       type: String,
       default: '',

@@ -6,6 +6,7 @@
       input-class="offset-bottom-15"
       placeholder="Название"
       v-model="post.title"
+      v-focus
     />
 
     <Input
@@ -40,7 +41,6 @@ export default {
         title: '',
         body: ''
       }
-      document.querySelector('input').focus()
     }
   },
 
