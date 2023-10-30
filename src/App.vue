@@ -79,5 +79,9 @@ h2 {
 a {
   color: #333;
   cursor: pointer;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
 }
 </style>

@@ -4,6 +4,7 @@ import Posts from "@/pages/Posts";
 import About from "@/pages/About";
 import Post from "@/pages/Post";
 import PostsWithStore from "@/pages/PostsWithStore";
+import PostsCompositionApi from "@/pages/PostsCompositionApi";
 
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
     {
         path: '/store',
         component: PostsWithStore
+    },
+    {
+        path: '/composition',
+        component: PostsCompositionApi
     },
 ]
 

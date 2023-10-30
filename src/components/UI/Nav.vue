@@ -36,10 +36,5 @@ export default {
     display: flex;
     gap: 15px;
   }
-  a {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 }
 </style>
